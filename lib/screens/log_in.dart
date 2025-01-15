@@ -141,7 +141,7 @@ class _LogInState extends State<LogIn> {
                         setState(() {});
                         if (email != null && password != null) {
                           try {
-                            await signUser();
+                            // await signUser();
                             Navigator.pushNamed(context, ChatScreen.id,
                                 arguments: email);
                           } on FirebaseAuthException catch (e) {
@@ -203,10 +203,5 @@ class _LogInState extends State<LogIn> {
         ),
       ),
     );
-  }
-
-  Future<void> signUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
   }
 }
