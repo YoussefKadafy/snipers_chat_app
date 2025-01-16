@@ -29,9 +29,11 @@ class LogIn extends StatelessWidget {
       if (state is LoginLoading) {
         isLoading = true;
       } else if (state is LoginSuccess) {
+        isLoading = false;
         Navigator.pushNamed(context, ChatScreen.id, arguments: email);
-      } else {
-        getSnackBar(context, 'something went wrong');
+      } else if (state is LoginFailure) {
+        isLoading = false;
+        getSnackBar(context, state.errMessage);
       }
     }, builder: (context, state) {
       isShowPassword = !isShowPassword;
@@ -186,7 +188,7 @@ class LogIn extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 40,
                           ),
                         ],
                       ),

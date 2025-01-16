@@ -9,6 +9,6 @@ class MessageModel {
     required this.id,
   });
   factory MessageModel.fromJson(jsonData) {
-    return MessageModel(text: jsonData['text'], id: jsonData['id']);
+    return MessageModel(text: jsonData['text'], id: jsonData['id'] ?? '');
   }
 }
