@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:snipers/consts/consts.dart';
+import 'package:snipers/cubits/chat_cubit/chat_cubit.dart';
 import 'package:snipers/cubits/login_cubit/login_cubit.dart';
 import 'package:snipers/cubits/show_password_cubit/show_password_cubit.dart';
 import 'package:snipers/helper/snack_bar.dart';
@@ -30,6 +31,8 @@ class LogIn extends StatelessWidget {
         isLoading = true;
       } else if (state is LoginSuccess) {
         isLoading = false;
+
+        BlocProvider.of<ChatCubit>(context).getMessage();
         Navigator.pushNamed(context, ChatScreen.id, arguments: email);
       } else if (state is LoginFailure) {
         isLoading = false;
